@@ -8,7 +8,7 @@
         const cpf = document.getElementById('cpf').value;
         const telefone = document.getElementById('telefone').value;
         const genero = document.getElementById('genero').value;
-        const estadoCivil = document.getElementById('estado-civil').value;
+        const estadoCivil = document.getElementById('casamento').value;
         const Datacasamento = document.getElementById('data-casamento').value;
         const conjuge = document.getElementById('conjuge').value;
         const dataBatismo = document.getElementById('data-batismo').value;
@@ -20,7 +20,22 @@
 
 
         // Formatação da mensagem
-        const mensagem = `*Ficha de Cadastro*\n\nNome: ${nome}\nData de Nascimento: ${nascimento}\nNatural de: ${natural}`;
+        const mensagem = `*Ficha de Cadastro*\n
+            🧍 Nome: ${nome}
+            🎂 Data de Nascimento: ${nascimento}
+            🌍 Natural de: ${natural}
+            🪪 RG: ${rg}
+            📄 CPF: ${cpf}
+            📞 Telefone: ${telefone}
+            ⚧️ Gênero: ${genero}
+            💍 Estado civil: ${estadoCivil}
+            📅 Data de casamento: ${Datacasamento}
+            ❤️ Cônjuge: ${conjuge}
+            ⛪ Data de batismo: ${dataBatismo}
+            🏛️ Igreja de batismo: ${igrejaBatismo}
+            🕍 Igreja anterior: ${igrejaAnterior}
+            🙋 Pastor que batizou: ${pastor}
+            🙏 Deseja servir: ${servir}`;
 
         // Número do WhatsApp (coloque o DDD e número desejado aqui)
         const numero = '5515996665132'; // Ex: 55 + DDD + número
