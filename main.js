@@ -7,7 +7,7 @@
         const rg = document.getElementById('rg').value;
         const cpf = document.getElementById('cpf').value;
         const telefone = document.getElementById('telefone').value;
-        const genero = document.querySelector('genero').value;
+        const genero = document.getElementById('genero').value;
         const estadoCivil = document.getElementById('estado-civil').value;
         const Datacasamento = document.getElementById('data-casamento').value;
         const conjuge = document.getElementById('conjuge').value;
