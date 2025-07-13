@@ -38,7 +38,7 @@
             🙏 Deseja servir: ${servir}`;
 
         // Número do WhatsApp (coloque o DDD e número desejado aqui)
-        const numero = '5515996665132'; // Ex: 55 + DDD + número
+        const numero = '+5511985677575'; // Ex: 55 + DDD + número
 
         // Link do WhatsApp com mensagem
         const link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
