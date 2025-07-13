@@ -30,8 +30,9 @@ body{
 
 .logo{
     width: 300px;
-    position: absolute;
-    top: -15px;
+    position: relative;
+    bottom: 350px;
+    left: 180px;
     z-index: 12 ;
 }
 
@@ -39,6 +40,7 @@ body{
 .box{
     position: relative;
     top: 10px;
+    right: 140px;
     width: 370px;
     height: 450px;
     background: white;
