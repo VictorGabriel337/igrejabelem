@@ -17,20 +17,23 @@ body{
     min-height: 100vh;
 }
 
-#videoBG{
-    position: fixed;
-    padding: 0;
-    min-width: 100%;
-    min-height: 170%;
-    z-index: -100;
-    opacity: 0.9;
-
+#videoBG {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
 }
 
 .logo{
     width: 300px;
     position: relative;
-    bottom: 630px;
+    bottom: 760px;
     left: 450px;
     z-index: 12 ;
 }
@@ -40,13 +43,14 @@ body{
     position: relative;
     top: 10px;
     width: 620px;
-    min-height: 1200px;
+    min-height: 1500px;
     margin-top: 250px;
     background: white;
     border-radius: 50px 5px;
     overflow:hidden;
     z-index: 30;
     padding-bottom: 40px;
+    padding-left: 100px;
 }
 
 .dados{
@@ -197,7 +201,7 @@ input[type="submit"]
     padding-bottom: 10px;      /* espaço abaixo */
     position: relative;
     right: 410px;
-    top:60px;
+    top:200px;
     
 
 }
@@ -225,7 +229,7 @@ input[type="submit"]:hover
 
 }
 
-.inputBox input:valid ~ span,
+.inputBox input.preenchido ~ span,
 .inputBox input:focus ~ span
 {
     color: #D4AF37;
@@ -248,7 +252,7 @@ input[type="submit"]:hover
 }
 
 
-.inputBox input:valid ~ i,
+.inputBox input.preenchido ~ i,
 .inputBox input:focus ~ i
 {
     height: 44px;
@@ -342,9 +346,4 @@ input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
-}
-
-/* Remove setas no Firefox */
-input[type=number] {
-    -moz-appearance: textfield;
 }
