@@ -1,0 +1,361 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+
+}
+
+
+body{
+    position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  background-color: #000;
+
+}
+
+.container{
+    width: 100%;
+    min-height: auto;
+    border: 1px solid white;
+    padding: 40px;
+    margin: 100px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    bottom: 200px;
+}
+
+.content{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+  height: auto;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.card .image{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+
+}
+
+.card .image .foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid black;
+    
+}
+
+
+.card{
+    position: relative;
+    background: #000;
+    border: 3px solid #D4AF37;
+    border-radius: 20px;
+    width: 280px;
+
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #D4AF37;
+    clip-path: circle(55% at 0 0);
+    border-top-left-radius: 10px ;
+     z-index: 0;
+    transition: clip-path 0.4s ease;
+
+}
+
+.card .card-content.front{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding:30px;
+    transition: all 0.4s ease-in-out;
+}
+
+.card .social-media{
+    position: absolute;
+    top:10px;
+    right:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card .social-media i{
+    color: #fff;
+    margin-top: 10px;
+    cursor:pointer;
+    transition: .3s;
+}
+
+
+.card .social-media i:hover{
+    color: #D4AF37;
+}
+
+.card .name-profession{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top:10px;
+    color: #fff;
+
+
+}
+
+.name-profession .name{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.name-profession .profession{
+    font-size: 15px;
+    font-weight: 500;
+
+}
+
+.card .rating i{
+    font-size: 18px;
+    color: #D4AF37;
+    margin: 0 2px;
+
+
+}
+
+
+.card .button{
+    display: flex;
+    justify-content: space-around;
+    width: 110%;
+    margin-top: 20px;
+}
+
+
+.card .button button{
+    background:#D4AF37;
+    border:none;
+    outline:none;
+    color: #000;
+    font-weight: 600;
+    padding: 8px 22px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor:pointer;
+    transition: .3s;
+
+}
+
+
+.card .button button:hover{
+    background: #fff;
+
+}
+
+.card.expandido {
+    width: 560px;
+  transform: scale(1.1);
+  transition: all 0.5s ease-in-out;
+  z-index: 10;
+  margin:10px;
+  
+}
+
+
+.card.expandido .card-content.front {
+  /* flex-direction: row;
+  align-items: flex-start; */
+  gap: 20px;
+}
+
+.card.expandido .image .foto {
+  width: 120px;
+  height: 140px;
+  flex-shrink: 0;
+  position: absolute;
+  right: 410px;
+  top: 100px;
+  border-radius: 10%;
+}
+
+.card.expandido .name-profession {
+  /* align-items: flex-start; */
+  margin-top: 0;
+}
+
+.card.expandido .name-profession .name {
+  font-size: 22px;
+}
+
+.card.expandido .name{
+    display: none;
+}
+
+.card.expandido .name-profession .profession {
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+  right:190px;
+  top: 50px;
+}
+
+
+.card.expandido::before {
+  clip-path: circle(40% at 0 0); /* menor círculo ao expandir */
+}
+
+
+.logo{
+       display: none;
+}
+
+
+.card.expandido .logo{
+    display: flex;
+     left: 190px;
+    bottom: 40px;
+    width: 300px;
+    opacity: 0.3;
+    z-index: -10;
+    position: absolute;
+    
+    
+}
+
+.card.expandido .info{
+
+    display: block;
+    color:white;
+    justify-content: center;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    width: 250px;
+    position:absolute ;
+    bottom: 270px;
+    left: 220px;
+
+}
+
+.info{
+  
+    display: none;
+}
+
+
+
+.info h3{
+    color:#D4AF37;
+    font-size: 20px;
+
+}
+
+.dados{
+    position: absolute;
+    display: none;
+}
+
+.card.expandido .dados{
+    display: block;
+    width: 60%;
+    top:70px;
+    right: 55px;
+}
+
+.dados span{
+    color: white;
+    font-weight: 500;
+}
+.dados h4{
+    width: auto;
+    color: black;
+    padding: 5px;
+    background-color: #D4AF37;
+    border-radius: 5px;
+    z-index: 10;
+}
+
+.frente-verso{
+   display: none;
+
+}
+
+.card.expandido .frente-verso{
+    display: block;
+     position: absolute;
+    left: 30px;
+    top: 20px;
+    display: flex;
+    font-size: 28px;
+}
+  
+.card .frente-verso i {
+    color: white;
+    width: 100px;
+    cursor: pointer;
+}
+
+
+
+
+/* teste */
+
+.card {
+  perspective: 1000px;
+  position: relative;
+}
+
+.card-content {
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.6s ease;
+  border-radius: 20px;
+}
+
+.card .front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.card .back {
+  transform: rotateY(180deg);
+  background: #111;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .back {
+  transform: rotateY(360deg); /* mostra a parte de trás */
+  z-index: 3;
+}
