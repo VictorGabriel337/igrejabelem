@@ -109,3 +109,50 @@ document.addEventListener('DOMContentLoaded', function () {
     );
     camposData.forEach((input) => aplicarMascaraData(input));
 });
+
+
+// 
+document.getElementById('form-cadastro').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const novoCadastro = {
+    nome: document.getElementById('nome').value,
+    nascimento: document.getElementById('nascimento').value,
+    telefone: document.getElementById('telefone').value,
+    natural: document.getElementById('natural').value,
+    sexo: document.getElementById('sexo').value,
+    estadoCivil: document.getElementById('estadoCivil').value,
+    conjugue: document.getElementById('conjugue').value,
+    endereco: document.getElementById('endereco').value,
+    bairro: document.getElementById('bairro').value,
+    cidade: document.getElementById('cidade').value,
+    cep: document.getElementById('cep').value,
+    batismo: document.getElementById('batismo').value,
+    dataEmissao: document.getElementById('dataEmissao').value
+  };
+
+  // Recupera os cadastros anteriores
+  const cadastros = JSON.parse(localStorage.getItem('cadastros')) || [];
+
+  // Adiciona o novo cadastro
+  cadastros.push(novoCadastro);
+
+  // Salva no localStorage
+  localStorage.setItem('cadastros', JSON.stringify(cadastros));
+
+  // Redireciona para a página de cards
+  window.location.href = 'card.html';
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const inputFoto = document.getElementById("foto");
+  const nomeArquivoSpan = document.getElementById("nome-arquivo");
+
+  if (inputFoto && nomeArquivoSpan) {
+    inputFoto.addEventListener("change", function () {
+      const nome = this.files[0] ? this.files[0].name : "Nenhum arquivo selecionado";
+      nomeArquivoSpan.textContent = nome;
+    });
+  }
+});

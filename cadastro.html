@@ -15,7 +15,7 @@
     <div class="box">
         
         
-        <form action="" class="">
+        <form class="formCadastro" action="" class="">
             <h2>Ficha de cadastro</h2>
 
 
@@ -80,6 +80,11 @@
                 <span>Nome do cônjuge</span>
                 <i></i>
             </div>
+            <div class="inputBox fileUpload">
+  <input type="file" id="foto" accept="image/*">
+  <label for="foto">📁 Escolher Imagem</label>
+  <span id="nome-arquivo">Nenhum arquivo selecionado</span>
+</div>
             <h3>Filhos</h3>
             <div class="linha"> 
              <div class="inputBox">
@@ -219,7 +224,19 @@
     </div>
 <video autoplay muted loop id="videoBG">
         <source src="video/cruz.mp4" type="video/mp4" >
+</video>
 
 <script src="cadastro.js"></script>
+<script src="script.js"></script>
+<script src="file.js"></script>
+
+
+
+<script>
+  document.getElementById('foto').addEventListener('change', function () {
+    const nome = this.files[0] ? this.files[0].name : "Nenhum arquivo selecionado";
+    document.getElementById('nome-arquivo').textContent = nome;
+  });
+</script>
 </body>
 </html>

@@ -43,7 +43,7 @@ body{
     position: relative;
     top: 10px;
     width: 620px;
-    min-height: 1500px;
+    min-height: 1550px;
     margin-top: 250px;
     background: white;
     border-radius: 50px 5px;
@@ -201,7 +201,7 @@ input[type="submit"]
     padding-bottom: 10px;      /* espaço abaixo */
     position: relative;
     right: 410px;
-    top:200px;
+    top:240px;
     
 
 }
@@ -271,6 +271,44 @@ input[type="submit"]:hover
     text-decoration: underline 2px;
     text-underline-offset: 5px;
 }
+
+
+.inputBox.fileUpload input[type="file"] {
+  display: none;
+}
+
+.inputBox.fileUpload label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #202125;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.inputBox.fileUpload label:hover {
+  background-color: white;
+  color: black;
+}
+
+
+#nome-arquivo {
+  font-style: italic;
+  color: #fff;
+  font-size: 14px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  left: 220px;
+  bottom: 0px;
+}
+
+
 
 
 

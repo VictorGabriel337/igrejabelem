@@ -100,6 +100,23 @@ body{
     display:flex;
     flex-direction: column;
     align-items: center;
+    z-index: 20;
+}
+
+.card .social-media a {
+  text-decoration: none;
+}
+
+.card .social-media a i {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* Extra: força o ícone a ser clicável */
+.whatsapp-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card .social-media i{
@@ -226,7 +243,7 @@ body{
 
 
 .logo{
-       display: none;
+ display: none;
 }
 
 
@@ -297,7 +314,6 @@ body{
 
 .frente-verso{
    display: none;
-
 }
 
 .card.expandido .frente-verso{
@@ -314,6 +330,9 @@ body{
     width: 100px;
     cursor: pointer;
 }
+
+
+
 
 
 
@@ -343,7 +362,7 @@ body{
 
 .card .back {
   transform: rotateY(180deg);
-  background: #111;
+  /* background: #111; */
   color: white;
   display: flex;
   align-items: center;
@@ -359,3 +378,63 @@ body{
   transform: rotateY(360deg); /* mostra a parte de trás */
   z-index: 3;
 }
+
+
+
+.button-back button{
+  position: relative;
+  top: 110px;
+  margin: 70px;
+
+}
+
+
+.card-content.back h4 {
+
+  width: 30%;
+  
+}
+
+
+
+.card-content.back .dados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 2 por linha */
+  gap: 20px 20px; /* linha x coluna */
+  width: 100%;
+  margin: 30px auto 0 auto; /* centraliza */
+  padding: 10px;
+  position: absolute;
+  top:30px;
+  right: -4px;
+  
+}
+
+.card-content.back .item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-content.back .item span {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.card-content.back .item h4 {
+  background-color: #D4AF37;
+  color: black;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+

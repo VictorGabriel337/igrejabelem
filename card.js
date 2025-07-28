@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const hireButtons = document.querySelectorAll('.hireMe');
+  const hireButtons = document.querySelectorAll('.carteira');
 
   hireButtons.forEach(button => {
     button.addEventListener('click', function () {
