@@ -56,40 +56,81 @@ document.addEventListener("DOMContentLoaded", () => {
         containerCards.innerHTML = "";
         cadastros.forEach(cadastro => {
           const card = criarCard(cadastro);
+
+
+          
           containerCards.appendChild(card);
         });
       }
     }
 
+ 
     if (form) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
+     form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-        const novoCadastro = {
-          nome: document.getElementById("nome").value,
-          nascimento: document.getElementById("Nascimento").value,
-          telefone: document.getElementById("telefone").value,
-          natural: document.querySelector("#nacionalidade input").value,
-          sexo: document.getElementById("genero").value,
-          estadoCivil: document.getElementById("casamento").value,
-          conjugue: document.getElementById("conjuge").value,
-          endereco: document.getElementById("endereco").value,
-          bairro: document.getElementById("bairro").value,
-          cidade: document.getElementById("cidade").value,
-          cep: document.getElementById("cep").value,
-          batismo: document.getElementById("data-batismo").value,
-          dataEmissao: new Date().toLocaleDateString("pt-BR"),
-          cargo: document.getElementById("servir").value || "Membro"
+  const fileInput = document.getElementById("foto");
+  const file = fileInput.files[0];
 
-        };
+  let fotoBase64 = null;
 
-        const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
-        cadastros.push(novoCadastro);
-        localStorage.setItem("cadastros", JSON.stringify(cadastros));
+  if (file) {
+    fotoBase64 = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 
-        mostrarCards();
-        form.reset();
-      });
+  const novoCadastro = {
+    nome: document.getElementById("nome").value,
+    nascimento: document.getElementById("Nascimento").value,
+    telefone: document.getElementById("telefone").value,
+    natural: document.querySelector("#nacionalidade input").value,
+    sexo: document.getElementById("genero").value,
+    estadoCivil: document.getElementById("casamento").value,
+    conjugue: document.getElementById("conjuge").value,
+    endereco: document.getElementById("endereco").value,
+    bairro: document.getElementById("bairro").value,
+    cidade: document.getElementById("cidade").value,
+    cep: document.getElementById("cep").value,
+    batismo: document.getElementById("data-batismo").value,
+    dataEmissao: new Date().toLocaleDateString("pt-BR"),
+    cargo: document.getElementById("servir").value || "Membro",
+    foto: fotoBase64
+  };
+
+  try {
+    const resposta = await fetch("http://localhost:5000/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(novoCadastro)
+    });
+
+    if (!resposta.ok) {
+      throw new Error("Erro ao cadastrar no backend.");
+    }
+
+    const resultado = await resposta.json();
+    console.log("✅ Cadastro salvo:", resultado);
+
+    // SALVAR NO localStorage
+    const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+    cadastros.push(novoCadastro);
+    localStorage.setItem("cadastros", JSON.stringify(cadastros));
+
+    // Adiciona o card visualmente na página de cadastro
+    const card = criarCard(novoCadastro);
+    containerCards.appendChild(card);
+    form.reset();
+  } catch (erro) {
+    console.error("❌ Erro no envio:", erro);
+    // alert("Erro ao enviar os dados para o servidor.");
+  }
+});
 
       mostrarCards();
     }
