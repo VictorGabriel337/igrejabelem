@@ -102,25 +102,21 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   try {
-    document.querySelector('.formCadastro').addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    // Colete os dados do formulário aqui...
-
-    // Exemplo de envio via fetch:
-    const resposta = await fetch('/cadastrar', {
-        method: 'POST',
-        body: JSON.stringify({ /* seus dados aqui */ }),
-        headers: { 'Content-Type': 'application/json' }
+    const resposta = await fetch("http://localhost:5000/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(novoCadastro)
     });
 
-    if (resposta.ok) {
-        // Cadastro enviado com sucesso, recarregue a página
-        window.location.reload();
-    } else {
-        alert('Erro ao cadastrar!');
+    
+    if (!resposta.ok) {
+      throw new Error("Erro ao cadastrar no backend.");
     }
-});
+
+    const resultado = await resposta.json();
+    console.log("✅ Cadastro salvo:", resultado);
 
     // SALVAR NO localStorage
     const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
