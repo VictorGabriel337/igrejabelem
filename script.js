@@ -60,6 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           
           containerCards.appendChild(card);
+
+           form.reset();
+
+    // **Aqui, adiciona o reload da página**
+    window.location.reload();
         });
       }
     }
@@ -124,8 +129,10 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("cadastros", JSON.stringify(cadastros));
 
     // Adiciona o card visualmente na página de cadastro
-    const card = criarCard(novoCadastro);
-    containerCards.appendChild(card);
+   if (containerCards) {
+  const card = criarCard(novoCadastro);
+  containerCards.appendChild(card);
+}
     form.reset();
   } catch (erro) {
     console.error("❌ Erro no envio:", erro);
@@ -153,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="card-inner">
             <div class="card-content front">
               <div class="image">
-                <img src="${cadastro.foto || '/img/victor.jpg'}" alt="" class="foto">
+                <img src="${cadastro.foto || '/img/avatar.png'}" alt="" class="foto">
                 <img src="img/logotipoSF.png" alt="" class="logo">
               </div>
 
@@ -245,7 +252,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Supondo que você tenha uma função para criar os cards, ou que eles já existam no DOM:
-document.querySelector(".container").addEventListener("click", (event) => {
+const container =  document.querySelector(".container");
+if(container){
+container.addEventListener("click", (event) => {
   // Verifica se o clique foi no botão "Carteira" (classe 'carteira' ou 'hireMe')
   if (event.target.classList.contains("carteira") || event.target.classList.contains("hireMe")) {
     const card = event.target.closest(".card");
@@ -263,3 +272,4 @@ document.querySelector(".container").addEventListener("click", (event) => {
     card.classList.toggle("flipped");
   }
 });
+}

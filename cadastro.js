@@ -112,7 +112,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // 
-document.getElementById('form-cadastro').addEventListener('submit', function (e) {
+const formCadastro =  document.getElementById('form-cadastro');
+if(formCadastro){
+formCadastro.addEventListener('submit', function (e) {
   e.preventDefault();
 
   const novoCadastro = {
@@ -143,6 +145,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (e)
   // Redireciona para a página de cards
   window.location.href = 'card.html';
 });
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
