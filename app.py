@@ -29,6 +29,7 @@ def get_db_connection():
 
 @app.route('/cadastrar', methods=['POST'])
 def cadastrar():
+    
     dados = request.json
 
     try:
@@ -70,6 +71,24 @@ def cadastrar():
         print("Erro ao inserir:", e)
         return jsonify({"erro": "Erro ao cadastrar"}), 500
 
+@app.route("/cadastros", methods=["GET"])
+def listar_cadastros():
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute("SELECT * FROM cadastro ORDER BY nome")
+        cadastros = cursor.fetchall()
+
+        cursor.close()
+        conn.close()
+
+        return jsonify(cadastros), 200
+    except Exception as e:
+        print("Erro ao buscar cadastros:", e)
+        return jsonify({"erro": "Erro ao buscar cadastros"}), 500
+
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
