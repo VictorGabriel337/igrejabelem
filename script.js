@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function mostrarCards() {
-      const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+      // const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
       if (containerCards) {
         containerCards.innerHTML = "";
         cadastros.forEach(cadastro => {
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-          const resposta = await fetch("http://localhost:5000/cadastrar", {
+          const resposta = await fetch("https://igrejabelem.onrender.com", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
