@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== card.html =====
   if (path.includes("card.html")) {
-    fetch("https://igrejabelem.onrender.com/caastros")
+    fetch("https://igrejabelem.onrender.com/cadastros")
       .then(response => response.json())
       .then(cadastros => {
         const container = document.querySelector(".container .content");
