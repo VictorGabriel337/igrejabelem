@@ -64,16 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return cardDiv;
     }
 
-    function mostrarCards() {
-      // const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
-      if (containerCards) {
-        containerCards.innerHTML = "";
-        cadastros.forEach(cadastro => {
-          const card = criarCard(cadastro);
-          containerCards.appendChild(card);
-        });
-      }
-    }
+    async function mostrarCards() {
+  try {
+    const resposta = await fetch("https://igrejabelem.onrender.com/cadastros");
+    const cadastros = await resposta.json();
+    containerCards.innerHTML = "";
+    cadastros.forEach(cadastro => {
+      const card = criarCard(cadastro);
+      containerCards.appendChild();
+    });
+  } catch (erro) {
+    console.error("Erro ao buscar cadastros:", erro);
+  }
+}
+
+    // function mostrarCards() {
+    //   // const cadastros = JSON.parse(localStorage.getItem("cadastros")) || [];
+    //   if (containerCards) {
+    //     containerCards.innerHTML = "";
+    //     cadastros.forEach(cadastro => {
+    //       const card = criarCard(cadastro);
+    //       containerCards.appendChild(card);
+    //     });
+    //   }
+    // }
 
     if (form) {
       form.addEventListener("submit", async (e) => {
@@ -111,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-          const resposta = await fetch("https://igrejabelem.onrender.com", {
+          const resposta = await fetch("https://igrejabelem.onrender.com/cadastrar", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -126,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Adiciona o card visualmente na página de cadastro
           if (containerCards) {
             const card = criarCard(novoCadastro);
-            containerCards.appendChild(card);
+            containerCards.appendChild();
           }
           form.reset();
         } catch (erro) {
@@ -140,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== card.html =====
   if (path.includes("card.html")) {
-    fetch("http://localhost:5000/cadastros")
+    fetch("https://igrejabelem.onrender.com/caastros")
       .then(response => response.json())
       .then(cadastros => {
         const container = document.querySelector(".container .content");
