@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card-inner">
               <div class="card-content front">
                 <div class="image">
-                  <img src="${cadastro.foto || '/img/avatar.png'}" alt="" class="foto">
+                 <img src="${cadastro.foto ? cadastro.foto : '/img/avatar.png'}" alt="" class="foto">
                   <img src="img/logotipoSF.png" alt="" class="logo">
                 </div>
                 <div class="social-media">

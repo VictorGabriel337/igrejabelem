@@ -16,20 +16,26 @@ def converter_data_ptbr_para_iso(data_ptbr):
     try:
         return datetime.strptime(data_ptbr, "%d/%m/%Y").date()
     except ValueError:
+        print(f"⚠️ Data inválida recebida: {data_ptbr}")
         return None
 
+
 def get_db_connection():
-    return mysql.connector.connect(
-    host=os.getenv("DB_HOST", "127.0.0.1"),
-    user=os.getenv("DB_USER", "root"),
-    password=os.getenv("DB_PASSWORD", "victorgabriel337"),
-    database=os.getenv("DB_NAME", "igreja"),
-    port=int(os.getenv("DB_PORT", 3306))
-    )
+    try:
+        return mysql.connector.connect(
+            host=os.getenv("DB_HOST", "127.0.0.1"),
+            user=os.getenv("DB_USER", "root"),
+            password=os.getenv("DB_PASSWORD", "victorgabriel337"),
+            database=os.getenv("DB_NAME", "igreja"),
+            port=int(os.getenv("DB_PORT", 3306))
+        )
+    except mysql.connector.Error as err:
+        print("🚨 Erro de conexão com o banco de dados:", err)
+        raise
+
 
 @app.route('/cadastrar', methods=['POST'])
 def cadastrar():
-    
     dados = request.json
 
     try:
@@ -44,20 +50,20 @@ def cadastrar():
         """
 
         values = (
-              dados.get("nome"),
-    converter_data_ptbr_para_iso(dados.get("nascimento")),
-    dados.get("telefone"),
-    dados.get("natural"),
-    dados.get("sexo"),
-    dados.get("estadoCivil"),
-    dados.get("conjugue"),
-    dados.get("endereco"),
-    dados.get("bairro"),
-    dados.get("cidade"),
-    dados.get("cep"),
-    converter_data_ptbr_para_iso(dados.get("batismo")),
-    converter_data_ptbr_para_iso(dados.get("dataEmissao")),
-    dados.get("foto")
+            dados.get("nome"),
+            converter_data_ptbr_para_iso(dados.get("nascimento")),
+            dados.get("telefone"),
+            dados.get("natural"),
+            dados.get("sexo"),
+            dados.get("estadoCivil"),
+            dados.get("conjugue"),
+            dados.get("endereco"),
+            dados.get("bairro"),
+            dados.get("cidade"),
+            dados.get("cep"),
+            converter_data_ptbr_para_iso(dados.get("batismo")),
+            converter_data_ptbr_para_iso(dados.get("dataEmissao")),
+            dados.get("foto")
         )
 
         cursor.execute(query, values)
@@ -65,11 +71,15 @@ def cadastrar():
         cursor.close()
         conn.close()
 
-        return jsonify({"mensagem": "Cadastro realizado com sucesso!"}), 201
+        return jsonify({"mensagem": "✅ Cadastro realizado com sucesso!"}), 201
 
+    except mysql.connector.Error as e:
+        print("❌ Erro ao inserir no banco:", e)
+        return jsonify({"erro": f"Erro ao cadastrar no banco de dados: {str(e)}"}), 500
     except Exception as e:
-        print("Erro ao inserir:", e)
-        return jsonify({"erro": "Erro ao cadastrar"}), 500
+        print("❌ Erro inesperado:", e)
+        return jsonify({"erro": f"Erro inesperado: {str(e)}"}), 500
+
 
 @app.route("/cadastros", methods=["GET"])
 def listar_cadastros():
@@ -84,10 +94,18 @@ def listar_cadastros():
         conn.close()
 
         return jsonify(cadastros), 200
-    except Exception as e:
-        print("Erro ao buscar cadastros:", e)
-        return jsonify({"erro": "Erro ao buscar cadastros"}), 500
 
+    except mysql.connector.Error as e:
+        print("❌ Erro ao buscar cadastros no banco:", e)
+        return jsonify({"erro": f"Erro ao acessar o banco de dados: {str(e)}"}), 500
+    except Exception as e:
+        print("❌ Erro inesperado ao buscar cadastros:", e)
+        return jsonify({"erro": f"Erro inesperado: {str(e)}"}), 500
+
+
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"mensagem": "Servidor Flask rodando com sucesso 🚀"}), 200
 
 
 if __name__ == "__main__":
