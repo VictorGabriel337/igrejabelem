@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (path.includes("cadastro.html")) {
     const form = document.querySelector(".formCadastro");
     const containerCards = document.querySelector(".container-cards");
+    if (!container) return;
 
     function criarCard(cadastro) {
       const cardDiv = document.createElement("div");
@@ -64,15 +65,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return cardDiv;
     }
 
-    async function mostrarCards() {
+  async function mostrarCards() {
   try {
     const resposta = await fetch("https://igrejabelem.onrender.com/cadastros");
     const cadastros = await resposta.json();
-    containerCards.innerHTML = "";
-    cadastros.forEach(cadastro => {
-      const card = criarCard(cadastro);
-      containerCards.appendChild();
-    });
+    if (!Array.isArray(cadastros)) {
+      throw new Error("Resposta inválida do backend");
+    }
+
+    if (containerCards) {
+      containerCards.innerHTML = "";
+      cadastros.forEach(cadastro => {
+        const card = criarCard(cadastro);
+        containerCards.appendChild(card); // ✅ corrigido
+      });
+    }
   } catch (erro) {
     console.error("Erro ao buscar cadastros:", erro);
   }
@@ -140,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Adiciona o card visualmente na página de cadastro
           if (containerCards) {
             const card = criarCard(novoCadastro);
-            containerCards.appendChild();
+            containerCards.appendChild(card);
           }
           form.reset();
         } catch (erro) {
@@ -168,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="card-inner">
               <div class="card-content front">
                 <div class="image">
-                 <img src="${cadastro.foto ? cadastro.foto : '/img/avatar.png'}" alt="" class="foto">
+                 <img src="${cadastro.foto || 'https://igrejaenvagelicabelem.netlify.app/img/avatar.png'}" />
                   <img src="img/logotipoSF.png" alt="" class="logo">
                 </div>
                 <div class="social-media">
@@ -241,7 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           `;
-          container.innerHTML += cardHTML;
+          // container.innerHTML += cardHTML;
           container.appendChild(cardDiv);
         });
       })
