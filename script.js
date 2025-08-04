@@ -241,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>
           `;
+          container.innerHTML += cardHTML;
           container.appendChild(cardDiv);
         });
       })
