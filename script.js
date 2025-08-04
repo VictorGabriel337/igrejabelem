@@ -67,7 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function mostrarCards() {
   try {
-    const resposta = await fetch("https://igrejabelem.onrender.com/cadastros");
+    // const resposta = await fetch("https://igrejabelem.onrender.com/cadastros");
+    const resposta = await fetch("http://localhost:5000/cadastros");
     const cadastros = await resposta.json();
     if (!Array.isArray(cadastros)) {
       throw new Error("Resposta inválida do backend");
@@ -132,7 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-          const resposta = await fetch("https://igrejabelem.onrender.com/cadastrar", {
+          // const resposta = await fetch("https://igrejabelem.onrender.com/cadastrar", {
+             const resposta = await fetch("http://localhost:5000/cadastrar", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -161,7 +163,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== card.html =====
   if (path.includes("card.html")) {
-    fetch("https://igrejabelem.onrender.com/cadastros")
+    // fetch("https://igrejabelem.onrender.com/cadastros")
+    fetch("http://localhost:5000/cadastros")
       .then(response => response.json())
       .then(cadastros => {
 
