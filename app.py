@@ -7,7 +7,7 @@ from datetime import datetime
 
 load_dotenv()
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 def converter_data_ptbr_para_iso(data_ptbr):
