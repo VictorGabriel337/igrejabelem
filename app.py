@@ -94,18 +94,10 @@ def listar_cadastros():
         conn.close()
 
         return jsonify(cadastros), 200
-
-    except mysql.connector.Error as e:
-        print("❌ Erro ao buscar cadastros no banco:", e)
-        return jsonify({"erro": f"Erro ao acessar o banco de dados: {str(e)}"}), 500
     except Exception as e:
-        print("❌ Erro inesperado ao buscar cadastros:", e)
-        return jsonify({"erro": f"Erro inesperado: {str(e)}"}), 500
+        print("Erro ao buscar cadastros:", e)
+        return jsonify({"erro": "Erro ao buscar cadastros"}), 500
 
-
-@app.route("/", methods=["GET"])
-def home():
-    return jsonify({"mensagem": "Servidor Flask rodando com sucesso 🚀"}), 200
 
 
 if __name__ == "__main__":
