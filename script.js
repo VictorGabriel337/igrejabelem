@@ -164,6 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("https://igrejabelem.onrender.com/cadastros")
       .then(response => response.json())
       .then(cadastros => {
+
+          console.log("🔎 Conteúdo da resposta da API:", cadastros);
+
+  if (!Array.isArray(cadastros)) {
+    throw new Error("Resposta da API não é um array");
+  }
+
         const container = document.querySelector(".container .content");
         container.innerHTML = "";
 
