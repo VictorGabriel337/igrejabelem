@@ -9,7 +9,7 @@ from datetime import datetime
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": ["https://igrejaenvagelicabelem.netlify.app"]}})
 
 def converter_data_ptbr_para_iso(data_ptbr):
     if not data_ptbr:
