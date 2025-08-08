@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function mostrarCards() {
   try {
-    const resposta = await fetch("${backendURL}/cadastros");
+    const resposta = await fetch(`${backendURL}/cadastros`);
     // const resposta = await fetch("http://localhost:5000/cadastros");
     const cadastros = await resposta.json();
     if (!Array.isArray(cadastros)) {
@@ -134,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         try {
-          // const resposta = await fetch("https://igrejabgitelem.onrender.com/cadastrar", {
-             const resposta = await fetch("http://localhost:5000/cadastrar", {
+          const resposta = await fetch(`${backendURL}/cadastrar`, {
+            //  const resposta = await fetch("http://localhost:5000/cadastrar", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== card.html =====
   if (path.includes("card.html")) {
-    fetch("${backendURL}/cadastros")
+    fetch(`${backendURL}/cadastros`)
     // fetch("http://localhost:5000/cadastros")
       .then(response => response.json())
       .then(cadastros => {
