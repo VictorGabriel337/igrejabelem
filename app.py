@@ -1,6 +1,7 @@
 from flask_cors import CORS
 from flask import Flask, request, jsonify
-import mysql.connector
+# import mysql.connector
+import psycopg2
 from dotenv import load_dotenv
 import os
 from datetime import datetime
@@ -22,14 +23,14 @@ def converter_data_ptbr_para_iso(data_ptbr):
 
 def get_db_connection():
     try:
-        return mysql.connector.connect(
+        return psycopg2.connect(
             host=os.getenv("DB_HOST", "127.0.0.1"),
             user=os.getenv("DB_USER", "root"),
             password=os.getenv("DB_PASSWORD", "victorgabriel337"),
             database=os.getenv("DB_NAME", "igreja"),
             port=int(os.getenv("DB_PORT", 3306))
         )
-    except mysql.connector.Error as err:
+    except psycopg2.Error as err:
         print("🚨 Erro de conexão com o banco de dados:", err)
         raise
 
