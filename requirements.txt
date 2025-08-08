@@ -3,4 +3,4 @@ flask-cors
 mysql-connector-python
 gunicorn
 python-dotenv
-psycopg-binary
+psycopg2-binary
