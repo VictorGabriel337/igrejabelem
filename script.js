@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
+  const backendURL = "https://igrejabelem.onrender.com";
 
   // ===== cadastro.html =====
   if (path.includes("cadastro.html")) {

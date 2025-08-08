@@ -1,15 +1,15 @@
 from flask_cors import CORS
 from flask import Flask, request, jsonify
-# import mysql.connector
 import psycopg2
+from psycopg2 import extras
 from dotenv import load_dotenv
 import os
 from datetime import datetime
 
 load_dotenv()
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
-
 
 def converter_data_ptbr_para_iso(data_ptbr):
     if not data_ptbr:
@@ -20,25 +20,28 @@ def converter_data_ptbr_para_iso(data_ptbr):
         print(f"⚠️ Data inválida recebida: {data_ptbr}")
         return None
 
-
 def get_db_connection():
+    db_url = os.getenv("DATABASE_URL")
+    if not db_url:
+        raise ValueError("A variável de ambiente DATABASE_URL não está configurada.")
+    
     try:
-        return psycopg2.connect(
-            host=os.getenv("DB_HOST", "127.0.0.1"),
-            user=os.getenv("DB_USER", "root"),
-            password=os.getenv("DB_PASSWORD", "victorgabriel337"),
-            database=os.getenv("DB_NAME", "igreja"),
-            port=int(os.getenv("DB_PORT", 3306))
-        )
+        # Adiciona sslmode=require para conexão segura se não estiver na URL
+        if "sslmode" not in db_url:
+            if "?" in db_url:
+                db_url += "&sslmode=require"
+            else:
+                db_url += "?sslmode=require"
+        
+        conn = psycopg2.connect(db_url)
+        return conn
     except psycopg2.Error as err:
         print("🚨 Erro de conexão com o banco de dados:", err)
         raise
 
-
 @app.route('/cadastrar', methods=['POST'])
 def cadastrar():
     dados = request.json
-
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -57,7 +60,7 @@ def cadastrar():
             dados.get("natural"),
             dados.get("sexo"),
             dados.get("estadoCivil"),
-            dados.get("conjugue"),
+            dados.get("conjuge"),
             dados.get("endereco"),
             dados.get("bairro"),
             dados.get("cidade"),
@@ -74,19 +77,18 @@ def cadastrar():
 
         return jsonify({"mensagem": "✅ Cadastro realizado com sucesso!"}), 201
 
-    except mysql.connector.Error as e:
+    except psycopg2.Error as e:
         print("❌ Erro ao inserir no banco:", e)
         return jsonify({"erro": f"Erro ao cadastrar no banco de dados: {str(e)}"}), 500
     except Exception as e:
         print("❌ Erro inesperado:", e)
         return jsonify({"erro": f"Erro inesperado: {str(e)}"}), 500
 
-
 @app.route("/cadastros", methods=["GET"])
 def listar_cadastros():
     try:
         conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+        cursor = conn.cursor(cursor_factory=extras.DictCursor)
 
         cursor.execute("SELECT * FROM cadastro ORDER BY nome")
         cadastros = cursor.fetchall()
@@ -94,12 +96,11 @@ def listar_cadastros():
         cursor.close()
         conn.close()
 
+        # Converte para lista de dicionários (já vem com DictCursor)
         return jsonify(cadastros), 200
     except Exception as e:
         print("Erro ao buscar cadastros:", e)
         return jsonify({"erro": "Erro ao buscar cadastros"}), 500
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
