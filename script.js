@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco)}" target="_blank"><i class="fa-solid fa-house"></i></a>
                 </div>
                 <div class="name-profession">
-                  <span class="name">${cadastro.nome.split(" ")[0]}</span>
+                  <span class="name">${cadastro.nome?.split(" ")[0]}</span>
                   <span class="cargo">${cadastro.cargo || "Membro"}</span>
                 </div>
                 <div class="cardexp">
