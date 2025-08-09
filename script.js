@@ -117,9 +117,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const novoCadastro = {
           nome: document.getElementById("nome").value,
-          nascimento: document.getElementById("Nascimento").value,
+          nascimento: document.getElementById("nascimento").value,
           telefone: document.getElementById("telefone").value,
-          natural: document.querySelector("#nacionalidade input").value,
+          natural: document.querySelector("#naturalidade input").value,
           sexo: document.getElementById("genero").value,
           estadoCivil: document.getElementById("casamento").value,
           conjugue: document.getElementById("conjuge").value,
