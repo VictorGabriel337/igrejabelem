@@ -9,7 +9,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
     const genero = document.getElementById('genero').value;
     const estadoCivil = document.getElementById('casamento').value;
     const dataCasamento = document.getElementById('data-casamento').value;
-    const conjuge = document.getElementById('conjuge').value;
+    const conjugue = document.getElementById('conjugue').value;
 
     // Dados dos filhos
   let filhos = [];
@@ -46,7 +46,7 @@ nomesFilhos.forEach((inputNome, index) => {
 ⚧️ Gênero: ${genero}
 💍 Estado civil: ${estadoCivil}
 📅 Data de casamento: ${dataCasamento}
-❤️ Cônjuge: ${conjuge}
+❤️ Cônjuge: ${conjugue}
 
 👶 *Filhos:*
 ${filhos.join('\n')}
