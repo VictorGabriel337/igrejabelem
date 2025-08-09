@@ -26,7 +26,6 @@ def get_db_connection():
         raise ValueError("A variável de ambiente DATABASE_URL não está configurada.")
     
     try:
-        # Adiciona sslmode=require para conexão segura se não estiver na URL
         if "sslmode" not in db_url:
             if "?" in db_url:
                 db_url += "&sslmode=require"
@@ -84,22 +83,54 @@ def cadastrar():
         print("❌ Erro inesperado:", e)
         return jsonify({"erro": f"Erro inesperado: {str(e)}"}), 500
 
+
 @app.route("/cadastros", methods=["GET"])
 def listar_cadastros():
     try:
         conn = get_db_connection()
         cursor = conn.cursor(cursor_factory=extras.DictCursor)
 
-        cursor.execute("SELECT * FROM cadastro ORDER BY nome")
+        cursor.execute("""
+            SELECT 
+                nome,
+                nascimento,
+                telefone,
+                naturalidade AS natural,
+                sexo,
+                estado_civil AS estadoCivil,
+                conjuge AS conjugue,
+                endereco,
+                bairro,
+                cidade,
+                cep,
+                batismo,
+                emissao AS dataEmissao,
+                cargo,
+                foto
+            FROM cadastro
+            ORDER BY nome;
+        """)
+
         cadastros = cursor.fetchall()
-        lista_cadastros = [dict(row) for row in cadastros]
-        return jsonify(lista_cadastros), 200
+        lista_cadastros = []
+
+        for row in cadastros:
+            cadastro_dict = dict(row)
+
+            for campo_data in ["nascimento", "batismo", "dataEmissao"]:
+                valor = cadastro_dict.get(campo_data)
+                if valor:
+                    cadastro_dict[campo_data] = valor.strftime("%d/%m/%Y")
+                else:
+                    cadastro_dict[campo_data] = None
+
+            lista_cadastros.append(cadastro_dict)
 
         cursor.close()
         conn.close()
 
-        # Converte para lista de dicionários (já vem com DictCursor)
-        return jsonify(cadastros), 200
+        return jsonify(lista_cadastros), 200
+
     except Exception as e:
         print("Erro ao buscar cadastros:", e)
         return jsonify({"erro": "Erro ao buscar cadastros"}), 500
