@@ -49,7 +49,7 @@ def cadastrar():
         query = """
         INSERT INTO cadastro (
             nome, nascimento, telefone, naturalidade, sexo, estado_civil,
-            conjuge, endereco, bairro, cidade, cep, batismo, emissao, foto
+            conjugue, endereco, bairro, cidade, cep, batismo, emissao, foto
         ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
@@ -60,7 +60,7 @@ def cadastrar():
             dados.get("natural"),
             dados.get("sexo"),
             dados.get("estadoCivil"),
-            dados.get("conjuge"),
+            dados.get("conjugue"),
             dados.get("endereco"),
             dados.get("bairro"),
             dados.get("cidade"),

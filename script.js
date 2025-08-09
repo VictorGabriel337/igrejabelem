@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
           naturalidade: document.querySelector("#nacionalidade input").value,
           sexo: document.getElementById("genero").value,
           estado_civil: document.getElementById("casamento").value,
-          conjuge: document.getElementById("conjuge").value,
+          conjugue: document.getElementById("conjugue").value,
           endereco: document.getElementById("endereco").value,
           bairro: document.getElementById("bairro").value,
           cidade: document.getElementById("cidade").value,
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="dados">
                   <div class="item"><span>Sexo</span><h4 class="sexo">${cadastro.sexo || ""}</h4></div>
                   <div class="item"><span>Estado civil</span><h4 class="estado-civil">${cadastro.estado_civil || ""}</h4></div>
-                  <div class="item"><span>Conjugue</span><h4 class="conjuge">${cadastro.conjuge || ""}</h4></div>
+                  <div class="item"><span>Conjugue</span><h4 class="conjugue">${cadastro.conjugue || ""}</h4></div>
                   <div class="item"><span>Endereço</span><h4 class="endereco">${cadastro.endereco || ""}</h4></div>
                   <div class="item"><span>Bairro</span><h4 class="bairro">${cadastro.bairro || ""}</h4></div>
                   <div class="item"><span>Cidade</span><h4 class="cidade">${cadastro.cidade || ""}</h4></div>
