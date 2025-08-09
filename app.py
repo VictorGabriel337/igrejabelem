@@ -92,6 +92,8 @@ def listar_cadastros():
 
         cursor.execute("SELECT * FROM cadastro ORDER BY nome")
         cadastros = cursor.fetchall()
+        lista_cadastros = [dict(row) for row in cadastros]
+        return jsonify(lista_cadastros), 200
 
         cursor.close()
         conn.close()
