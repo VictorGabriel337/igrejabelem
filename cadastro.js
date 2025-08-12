@@ -130,7 +130,7 @@ formCadastro.addEventListener('submit', function (e) {
     cidade: document.getElementById('cidade').value,
     cep: document.getElementById('cep').value,
     batismo: document.getElementById('batismo').value,
-    dataEmissao: document.getElementById('dataEmissao').value
+    dataEmissao: document.getElementById('emissao').value
   };
 
   // Recupera os cadastros anteriores
