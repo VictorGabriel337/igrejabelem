@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="item"><span>Cidade</span><h4 class="cidade">${cadastro.cidade || ""}</h4></div>
               <div class="item"><span>CEP</span><h4 class="cep">${cadastro.cep || ""}</h4></div>
               <div class="item"><span>Batismo</span><h4 class="batismo">${cadastro.batismo ? formatDate(cadastro.batismo) : ""}</h4></div>
-              <div class="item"><span>Data de emissão</span><h4 class="emissao">${cadastro.emissao ? formatDate(cadastro.emissao) : ""}</h4></div>
+              <div class="item"><span>Data de emissão</span><h4 class="dataEmissao">${cadastro.emissao ? formatDate(cadastro.emissao) : ""}</h4></div>
             </div>
             <div class="button">
               <div class="button-back">
@@ -246,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div class="item"><span>Cidade</span><h4 class="cidade">${cadastro.cidade || ""}</h4></div>
                   <div class="item"><span>CEP</span><h4 class="cep">${cadastro.cep || ""}</h4></div>
                   <div class="item"><span>Batismo</span><h4 class="batismo">${cadastro.batismo ? formatDate(cadastro.batismo) : ""}</h4></div>
-                  <div class="item"><span>Data de emissão</span><h4 class="emissao">${cadastro.emissao ? formatDate(cadastro.emissao) : ""}</h4></div>
+                  <div class="item"><span>Data de emissão</span><h4 class="dataEmissao">${cadastro.emissao ? formatDate(cadastro.emissao) : ""}</h4></div>
                 </div>
                 <div class="button">
                   <div class="button-back">
