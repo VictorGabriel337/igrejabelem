@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
           nome: document.getElementById("nome").value,
           nascimento: document.getElementById("Nascimento").value,
           telefone: document.getElementById("telefone").value,
-          naturalidade: document.querySelector("naturalidade").value,
+          naturalidade: document.getElementById("naturalidade").value,
           sexo: document.getElementById("genero").value,
           estado_civil: document.getElementById("estado_civil").value,
           conjugue: document.getElementById("conjugue").value,

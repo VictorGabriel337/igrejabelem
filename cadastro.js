@@ -4,7 +4,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
     const nome = document.getElementById('nome').value;
     const nascimento = document.getElementById('Nascimento').value;
-    const natural = document.getElementById('naturalidade').querySelector('input').value;
+    const natural = document.getElementById('naturalidade').value;
     const telefone = document.getElementById('telefone').value;
     const genero = document.getElementById('genero').value;
     const estadoCivil = document.getElementById('estado_civil').value;
