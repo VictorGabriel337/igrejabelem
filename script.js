@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="card-content back">
             <div class="dados">
               <div class="item"><span>Sexo</span><h4 class="sexo">${cadastro.sexo || ""}</h4></div>
-              <div class="item"><span>Estado civil</span><h4 class="estado-civil">${cadastro.estado_civil || ""}</h4></div>
+              <div class="item"><span>Estado civil</span><h4 class="estado_civil">${cadastro.estado_civil || ""}</h4></div>
               <div class="item"><span>Conjugue</span><h4 class="conjugue">${cadastro.conjugue || ""}</h4></div>
               <div class="item"><span>Endereço</span><h4 class="endereco">${cadastro.endereco || ""}</h4></div>
               <div class="item"><span>Bairro</span><h4 class="bairro">${cadastro.bairro || ""}</h4></div>
@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="dados">
                   <div class="item"><span>Sexo</span><h4 class="sexo">${cadastro.sexo || ""}</h4></div>
-                  <div class="item"><span>Estado civil</span><h4 class="estado-civil">${cadastro.estado_civil || ""}</h4></div>
+                  <div class="item"><span>Estado civil</span><h4 class="estado_civil">${cadastro.estado_civil || ""}</h4></div>
                   <div class="item"><span>Conjugue</span><h4 class="conjugue">${cadastro.conjugue || ""}</h4></div>
                   <div class="item"><span>Endereço</span><h4 class="endereco">${cadastro.endereco || ""}</h4></div>
                   <div class="item"><span>Bairro</span><h4 class="bairro">${cadastro.bairro || ""}</h4></div>
