@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span>Telefone</span>
                 <h4 class="telefone">${cadastro.telefone}</h4>
                 <span>Natural de:</span>
-                <h4 class="naturalidade">${cadastro.naturalidade || ""}</h4>
+                <h4 class="natural">${cadastro.naturalidade || ""}</h4>
               </div>
             </div>
             <div class="frente-verso">
@@ -116,16 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
           nome: document.getElementById("nome").value,
           nascimento: document.getElementById("Nascimento").value,
           telefone: document.getElementById("telefone").value,
-          naturalidade: document.querySelector("naturalidade").value,
+          naturalidade: document.querySelector("#nacionalidade input").value,
           sexo: document.getElementById("genero").value,
-          estado_civil: document.getElementById("estado_civil").value,
+          estado_civil: document.getElementById("casamento").value,
           conjugue: document.getElementById("conjugue").value,
           endereco: document.getElementById("endereco").value,
           bairro: document.getElementById("bairro").value,
           cidade: document.getElementById("cidade").value,
           cep: document.getElementById("cep").value,
           batismo: document.getElementById("data-batismo").value,
-          emissao: new Date().toISOString(),
+          emissao: new Date().toLocaleDateString("pt-BR"),
           cargo: document.getElementById("servir").value || "Membro",
           foto: fotoBase64
         };
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span>Telefone</span>
                     <h4 class="telefone">${cadastro.telefone}</h4>
                     <span>Natural de:</span>
-                    <h4 class="naturalidade">${cadastro.naturalidade || ""}</h4>
+                    <h4 class="natural">${cadastro.naturalidade || ""}</h4>
                   </div>
                 </div>
                 <div class="frente-verso">
