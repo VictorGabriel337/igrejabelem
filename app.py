@@ -59,7 +59,7 @@ def cadastrar():
             dados.get("telefone"),
             dados.get("natural"),
             dados.get("sexo"),
-            dados.get("estadoCivil"),
+            dados.get("estado_civil"),
             dados.get("conjugue"),
             dados.get("endereco"),
             dados.get("bairro"),
