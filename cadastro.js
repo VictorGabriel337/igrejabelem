@@ -33,7 +33,7 @@ nomesFilhos.forEach((inputNome, index) => {
 
     // Eclesiásticos
     const dataBatismo = document.getElementById('batismo').value;
-    const igrejaBatismo = document.getElementById('igreja-batismo').value;
+    const igrejaBatismo = document.getElementById('igreja-bat').value;
     const igrejaAnterior = document.getElementById('igreja-anterior').value;
     const pastor = document.getElementById('pastor').value;
     const servir = document.getElementById('servir').value;
