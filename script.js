@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span>Telefone</span>
                 <h4 class="telefone">${cadastro.telefone}</h4>
                 <span>Natural de:</span>
-                <h4 class="natural">${cadastro.naturalidade || ""}</h4>
+                <h4 class="naturalidade">${cadastro.naturalidade || ""}</h4>
               </div>
             </div>
             <div class="frente-verso">
@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span>Telefone</span>
                     <h4 class="telefone">${cadastro.telefone}</h4>
                     <span>Natural de:</span>
-                    <h4 class="natural">${cadastro.naturalidade || ""}</h4>
+                    <h4 class="naturalidade">${cadastro.naturalidade || ""}</h4>
                   </div>
                 </div>
                 <div class="frente-verso">
