@@ -32,7 +32,7 @@ nomesFilhos.forEach((inputNome, index) => {
     const cep = document.getElementById('cep').value;
 
     // Eclesiásticos
-    const dataBatismo = document.getElementById('data-batismo').value;
+    const dataBatismo = document.getElementById('batismo').value;
     const igrejaBatismo = document.getElementById('igreja-batismo').value;
     const igrejaAnterior = document.getElementById('igreja-anterior').value;
     const pastor = document.getElementById('pastor').value;
@@ -105,7 +105,7 @@ function aplicarMascaraData(input) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const camposData = document.querySelectorAll(
-      'input[id*="data"], input[id*="Nascimento"], input[id*="data-batismo"], input.data-nascimento-filho'
+      'input[id*="data"], input[id*="Nascimento"], input[id*="batismo"], input.data-nascimento-filho'
     );
     camposData.forEach((input) => aplicarMascaraData(input));
 });
