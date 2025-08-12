@@ -7,7 +7,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
     const natural = document.getElementById('nacionalidade').querySelector('input').value;
     const telefone = document.getElementById('telefone').value;
     const genero = document.getElementById('genero').value;
-    const estadoCivil = document.getElementById('casamento').value;
+    const estadoCivil = document.getElementById('estado_civil').value;
     const dataCasamento = document.getElementById('data-casamento').value;
     const conjugue = document.getElementById('conjugue').value;
 
