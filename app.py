@@ -57,7 +57,7 @@ def cadastrar():
             dados.get("nome"),
             converter_data_ptbr_para_iso(dados.get("nascimento")),
             dados.get("telefone"),
-            dados.get("natural"),
+            dados.get("naturalidade"),
             dados.get("sexo"),
             dados.get("estado_civil"),
             dados.get("conjugue"),

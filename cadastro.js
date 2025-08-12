@@ -4,7 +4,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
     const nome = document.getElementById('nome').value;
     const nascimento = document.getElementById('Nascimento').value;
-    const natural = document.getElementById('nacionalidade').querySelector('input').value;
+    const natural = document.getElementById('naturalidade').querySelector('input').value;
     const telefone = document.getElementById('telefone').value;
     const genero = document.getElementById('genero').value;
     const estadoCivil = document.getElementById('estado_civil').value;
@@ -121,7 +121,7 @@ formCadastro.addEventListener('submit', function (e) {
     nome: document.getElementById('nome').value,
     nascimento: document.getElementById('nascimento').value,
     telefone: document.getElementById('telefone').value,
-    natural: document.getElementById('natural').value,
+    natural: document.getElementById('naturalidade').value,
     sexo: document.getElementById('sexo').value,
     estadoCivil: document.getElementById('estadoCivil').value,
     conjugue: document.getElementById('conjugue').value,
