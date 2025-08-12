@@ -3,7 +3,7 @@ document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const nome = document.getElementById('nome').value;
-    const nascimento = document.getElementById('Nascimento').value;
+    const nascimento = document.getElementById('nascimento').value;
     const natural = document.getElementById('naturalidade').value;
     const telefone = document.getElementById('telefone').value;
     const genero = document.getElementById('genero').value;
@@ -105,7 +105,7 @@ function aplicarMascaraData(input) {
 
 document.addEventListener('DOMContentLoaded', function () {
     const camposData = document.querySelectorAll(
-      'input[id*="data"], input[id*="Nascimento"], input[id*="batismo"], input.data-nascimento-filho'
+      'input[id*="data"], input[id*="nascimento"], input[id*="batismo"], input.data-nascimento-filho'
     );
     camposData.forEach((input) => aplicarMascaraData(input));
 });
