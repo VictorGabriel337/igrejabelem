@@ -66,7 +66,7 @@ def cadastrar():
             dados.get("cidade"),
             dados.get("cep"),
             converter_data_ptbr_para_iso(dados.get("batismo")),
-            converter_data_ptbr_para_iso(dados.get("dataEmissao")),
+            converter_data_ptbr_para_iso(dados.get("emissao")),
             dados.get("foto")
         )
 
