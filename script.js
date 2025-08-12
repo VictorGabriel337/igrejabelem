@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
           nome: document.getElementById("nome").value,
           nascimento: document.getElementById("Nascimento").value,
           telefone: document.getElementById("telefone").value,
-          naturalidade: document.querySelector("#nacionalidade input").value,
+          naturalidade: document.querySelector("nacionalidade").value,
           sexo: document.getElementById("genero").value,
           estado_civil: document.getElementById("casamento").value,
           conjugue: document.getElementById("conjugue").value,
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
           cidade: document.getElementById("cidade").value,
           cep: document.getElementById("cep").value,
           batismo: document.getElementById("data-batismo").value,
-          emissao: new Date().toLocaleDateString("pt-BR"),
+          emissao: new Date().toISOString(),
           cargo: document.getElementById("servir").value || "Membro",
           foto: fotoBase64
         };
