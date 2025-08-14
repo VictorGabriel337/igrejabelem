@@ -127,7 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
           batismo: document.getElementById("batismo").value,
           emissao: new Date().toLocaleDateString("pt-BR"),
           cargo: document.getElementById("servir").value || "Membro",
-          foto: fotoBase64
+          foto: fotoBase64,
+          numero: document.getElementById("Num-endereco").value
         };
 
         try {
@@ -193,9 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="social-media">
                   <i class="fa-solid fa-phone"></i>
                   <a href="https://wa.me/${cadastro.telefone}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco)}" target="_blank"><i class="fa-solid fa-house"></i></a>
-                </div>
-                <div class="name-profession">
+                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco + ' ' + (cadastro.numero || ''))}" target="_blank"><i class="fa-solid fa-house"></i></a>
                   <span class="name">${cadastro.nome?.split(" ")[0]}</span>
                   <span class="cargo">${cadastro.cargo || "Membro"}</span>
                 </div>
