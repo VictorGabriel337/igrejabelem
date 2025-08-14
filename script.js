@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", () => {
           bairro: document.getElementById("bairro").value,
           cidade: document.getElementById("cidade").value,
           cep: document.getElementById("cep").value,
-          numEndereço: document.getElementById("Num-endereco").value,
           batismo: document.getElementById("batismo").value,
           emissao: new Date().toLocaleDateString("pt-BR"),
           cargo: document.getElementById("servir").value || "Membro",
@@ -194,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="social-media">
                   <i class="fa-solid fa-phone"></i>
                   <a href="https://wa.me/${cadastro.telefone}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco + ' ' + (cadastro.Num-endereco || ''))}" target="_blank"><i class="fa-solid fa-house"></i></a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco + ' ' + (cadastro.numero || ''))}" target="_blank"><i class="fa-solid fa-house"></i></a>
                 </div>
                 <div class="name-profession">
                   <span class="name">${cadastro.nome?.split(" ")[0]}</span>
