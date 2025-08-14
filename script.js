@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
           foto: fotoBase64
         };
 
-        const enderecoCompleto = document.getElementById("endereco").value + " " + document.getElementById("Num-endereco").value;
         try {
           const resposta = await fetch(`${backendURL}/cadastrar`, {
             method: "POST",
@@ -194,7 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="social-media">
                   <i class="fa-solid fa-phone"></i>
                   <a href="https://wa.me/${cadastro.telefone}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                 <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoCompleto)}" target="_blank"><i class="fa-solid fa-house"></i></a>
+                  <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(cadastro.endereco)}" target="_blank"><i class="fa-solid fa-house"></i></a>
+                </div>
                 <div class="name-profession">
                   <span class="name">${cadastro.nome?.split(" ")[0]}</span>
                   <span class="cargo">${cadastro.cargo || "Membro"}</span>
