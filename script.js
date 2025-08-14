@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
           bairro: document.getElementById("bairro").value,
           cidade: document.getElementById("cidade").value,
           cep: document.getElementById("cep").value,
+          numEndereço: document.getElementById("Num-endereco").value,
           batismo: document.getElementById("batismo").value,
           emissao: new Date().toLocaleDateString("pt-BR"),
           cargo: document.getElementById("servir").value || "Membro",
