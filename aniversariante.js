@@ -1,21 +1,25 @@
 
-  document.querySelector(".formCadastro").addEventListener("submit", function(e) {
-    e.preventDefault(); // não deixa recarregar a página
+  window.addEventListener("DOMContentLoaded", () => {
+    const nome = document.getElementById("nome").textContent || document.getElementById("nome").value;
+    const nascimentoTxt = document.getElementById("nascimento").textContent || document.getElementById("nascimento").value;
 
-    const nome = document.getElementById("nome").value;
-    const nascimento = document.getElementById("nascimento").value; // yyyy-mm-dd
+    if (nome && nascimentoTxt) {
+      let partes = nascimentoTxt.split(/[\/\-]/); 
+      if (partes.length === 3) {
+        let dia = partes[0].padStart(2, "0");
+        let mes = partes[1].padStart(2, "0");
+        let ano = partes[2];
+        let nascimento = `${ano}-${mes}-${dia}`;
 
-    if (nome && nascimento) {
-      // Salva no localStorage (pra comunicar com o calendário)
-      let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
-      eventos.push({
-        date: nascimento,
-        title: "Aniversário de " + nome
-      });
-      localStorage.setItem("eventos", JSON.stringify(eventos));
-
-      alert("Cadastro enviado e aniversário adicionado no calendário!");
-      this.reset(); // limpa formulário
+        let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+        // evita duplicar
+        if (!eventos.some(ev => ev.date === nascimento && ev.title === "Aniversário de " + nome)) {
+          eventos.push({
+            date: nascimento,
+            title: "Aniversário de " + nome
+          });
+          localStorage.setItem("eventos", JSON.stringify(eventos));
+        }
+      }
     }
   });
-
