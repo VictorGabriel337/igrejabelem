@@ -55,8 +55,11 @@ const months = [
 //   },
 // ];
 
-const eventsArr = [];
-getEvents();
+// const eventsArr = [];
+// getEvents();
+// console.log(eventsArr);
+
+const eventsArr = getEvents();
 console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
