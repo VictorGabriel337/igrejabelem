@@ -55,11 +55,8 @@ const months = [
 //   },
 // ];
 
-// const eventsArr = [];
-// getEvents();
-// console.log(eventsArr);
-
-const eventsArr = getEvents();
+const eventsArr = [];
+getEvents();
 console.log(eventsArr);
 
 //function to add days in days with class day and prev-date next-date on previous month and next month days and active on today
@@ -468,31 +465,4 @@ function convertTime(time) {
   timeHour = timeHour % 12 || 12;
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
-}
-
-
-
-
-
-
-
-function getEvents() {
-  // eventos normais
-  const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-
-  // aniversários
-  const aniversarios = JSON.parse(localStorage.getItem("eventos")) || [];
-
-  // converte aniversários para o formato que o calendário entende
-  const today = new Date();
-  const year = today.getFullYear();
-  const birthdayEvents = aniversarios.map(ev => ({
-    day: parseInt(ev.dia),
-    month: parseInt(ev.mes),
-    year: year, // aniversários acontecem neste ano
-    events: [{ title: ev.title, time: "" }]
-  }));
-
-  // junta tudo
-  return [...storedEvents, ...birthdayEvents];
 }
