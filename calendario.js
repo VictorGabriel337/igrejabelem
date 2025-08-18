@@ -469,23 +469,37 @@ function convertTime(time) {
 
 
 
-// Recupera eventos do localStorage
-let eventosSalvos = JSON.parse(localStorage.getItem("eventos")) || [];
+function getEventos() {
+  return JSON.parse(localStorage.getItem("eventos")) || [];
+}
 
-// Quando montar o calendário, checa se o dia tem evento
 function renderCalendar() {
-  // ... seu código de renderização normal
+  const daysContainer = document.querySelector(".days");
+  daysContainer.innerHTML = "";
 
-  // Exemplo: marcar eventos
-  eventosSalvos.forEach(evento => {
-    const dataEvento = new Date(evento.date);
-    // aqui você adapta pra sua lógica de pintar o dia no calendário
-    // exemplo:
-    document.querySelectorAll(".days div").forEach(dia => {
-      if (dia.dataset.date === evento.date) {
-        dia.classList.add("has-event");
-        dia.innerHTML += `<span class="event-dot"></span>`;
+  const date = new Date();
+  const month = date.getMonth();
+  const year = date.getFullYear();
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0).getDate();
+
+  let eventos = getEventos();
+
+  for (let day = 1; day <= lastDay; day++) {
+    const div = document.createElement("div");
+    div.classList.add("day");
+    div.textContent = day;
+
+    // verifica se tem evento nesse dia
+    eventos.forEach(ev => {
+      let evDate = new Date(ev.date);
+      if (evDate.getDate() === day && evDate.getMonth() === month && evDate.getFullYear() === year) {
+        div.classList.add("event-day"); // css especial
+        div.title = ev.title; // tooltip
       }
     });
-  });
+
+    daysContainer.appendChild(div);
+  }
 }
