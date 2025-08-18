@@ -469,6 +469,10 @@ function convertTime(time) {
 
 
 
+
+
+
+
 function getEventos() {
   return JSON.parse(localStorage.getItem("eventos")) || [];
 }
@@ -478,7 +482,7 @@ function renderCalendar() {
   daysContainer.innerHTML = "";
 
   const date = new Date();
-  const month = date.getMonth();
+  const month = date.getMonth(); // 0 = janeiro
   const year = date.getFullYear();
 
   const firstDay = new Date(year, month, 1);
@@ -491,15 +495,17 @@ function renderCalendar() {
     div.classList.add("day");
     div.textContent = day;
 
-    // verifica se tem evento nesse dia
+    // procura aniversários nesse dia/mês
     eventos.forEach(ev => {
-      let evDate = new Date(ev.date);
-      if (evDate.getDate() === day && evDate.getMonth() === month && evDate.getFullYear() === year) {
-        div.classList.add("event-day"); // css especial
-        div.title = ev.title; // tooltip
+      if (parseInt(ev.dia) === day && parseInt(ev.mes) === (month + 1)) {
+        div.classList.add("event-day"); 
+        div.title = ev.title; 
       }
     });
 
     daysContainer.appendChild(div);
   }
 }
+
+// chama renderCalendar() quando a página carregar
+window.addEventListener("DOMContentLoaded", renderCalendar);

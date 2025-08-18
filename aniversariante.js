@@ -1,25 +1,29 @@
+window.addEventListener("DOMContentLoaded", () => {
+  const nomeEl = document.getElementById("nome");
+  const nascimentoEl = document.getElementById("nascimento");
 
-  window.addEventListener("DOMContentLoaded", () => {
-    const nome = document.getElementById("nome").textContent || document.getElementById("nome").value;
-    const nascimentoTxt = document.getElementById("nascimento").textContent || document.getElementById("nascimento").value;
+  if (nomeEl && nascimentoEl) {
+    const nome = nomeEl.textContent.trim();
+    const nascimentoTxt = nascimentoEl.textContent.trim();
 
     if (nome && nascimentoTxt) {
-      let partes = nascimentoTxt.split(/[\/\-]/); 
+      let partes = nascimentoTxt.split(/[\/\-]/); // suporta "26/01/2001" ou "26-01-2001"
       if (partes.length === 3) {
         let dia = partes[0].padStart(2, "0");
         let mes = partes[1].padStart(2, "0");
-        let ano = partes[2];
-        let nascimento = `${ano}-${mes}-${dia}`;
 
         let eventos = JSON.parse(localStorage.getItem("eventos")) || [];
+
         // evita duplicar
-        if (!eventos.some(ev => ev.date === nascimento && ev.title === "Aniversário de " + nome)) {
+        if (!eventos.some(ev => ev.dia === dia && ev.mes === mes && ev.title === "Aniversário de " + nome)) {
           eventos.push({
-            date: nascimento,
+            dia: dia,
+            mes: mes,
             title: "Aniversário de " + nome
           });
           localStorage.setItem("eventos", JSON.stringify(eventos));
         }
       }
     }
-  });
+  }
+});
