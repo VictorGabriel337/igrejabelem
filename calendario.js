@@ -466,3 +466,26 @@ function convertTime(time) {
   time = timeHour + ":" + timeMin + " " + timeFormat;
   return time;
 }
+
+
+
+// Recupera eventos do localStorage
+let eventosSalvos = JSON.parse(localStorage.getItem("eventos")) || [];
+
+// Quando montar o calendário, checa se o dia tem evento
+function renderCalendar() {
+  // ... seu código de renderização normal
+
+  // Exemplo: marcar eventos
+  eventosSalvos.forEach(evento => {
+    const dataEvento = new Date(evento.date);
+    // aqui você adapta pra sua lógica de pintar o dia no calendário
+    // exemplo:
+    document.querySelectorAll(".days div").forEach(dia => {
+      if (dia.dataset.date === evento.date) {
+        dia.classList.add("has-event");
+        dia.innerHTML += `<span class="event-dot"></span>`;
+      }
+    });
+  });
+}
