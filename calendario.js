@@ -473,39 +473,23 @@ function convertTime(time) {
 
 
 
-function getEventos() {
-  return JSON.parse(localStorage.getItem("eventos")) || [];
+function getEvents() {
+  // eventos normais
+  const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+
+  // aniversários
+  const aniversarios = JSON.parse(localStorage.getItem("eventos")) || [];
+
+  // converte aniversários para o formato que o calendário entende
+  const today = new Date();
+  const year = today.getFullYear();
+  const birthdayEvents = aniversarios.map(ev => ({
+    day: parseInt(ev.dia),
+    month: parseInt(ev.mes),
+    year: year, // aniversários acontecem neste ano
+    events: [{ title: ev.title, time: "" }]
+  }));
+
+  // junta tudo
+  return [...storedEvents, ...birthdayEvents];
 }
-
-function renderCalendar() {
-  const daysContainer = document.querySelector(".days");
-  daysContainer.innerHTML = "";
-
-  const date = new Date();
-  const month = date.getMonth(); // 0 = janeiro
-  const year = date.getFullYear();
-
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0).getDate();
-
-  let eventos = getEventos();
-
-  for (let day = 1; day <= lastDay; day++) {
-    const div = document.createElement("div");
-    div.classList.add("day");
-    div.textContent = day;
-
-    // procura aniversários nesse dia/mês
-    eventos.forEach(ev => {
-      if (parseInt(ev.dia) === day && parseInt(ev.mes) === (month + 1)) {
-        div.classList.add("event-day"); 
-        div.title = ev.title; 
-      }
-    });
-
-    daysContainer.appendChild(div);
-  }
-}
-
-// chama renderCalendar() quando a página carregar
-window.addEventListener("DOMContentLoaded", renderCalendar);
